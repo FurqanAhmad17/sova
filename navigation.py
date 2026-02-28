@@ -80,7 +80,7 @@ if __name__ == "__main__":
     fp = load_floor_plan()
 
     # Simulate: user said "washroom", scanned QR at front door
-    dest_node = resolve_destination(fp, "cafeteria")
+    dest_node = resolve_destination(fp, "washroom")
     start_node = resolve_qr(fp, "ACCESSIBLE_NAV::NODE_FRONT_DOOR")
 
     print(f"Start: {start_node}")
