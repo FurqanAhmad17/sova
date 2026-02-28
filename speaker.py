@@ -1,57 +1,31 @@
 import os
-import uuid
-import pygame
-from dotenv import load_dotenv
-from elevenlabs import VoiceSettings
 from elevenlabs.client import ElevenLabs
+from elevenlabs import play
 
-# pip install python-dotenv elevenlabs pygame
+# --- Configuration ---
+API_KEY = os.environ.get("ELEVENLABS_API_KEY", "YOUR_API_KEY_HERE")
+VOICE_ID = "EXAVITQu4vr4xnSDxMaL"  # "Sarah" - clear, calm, neutral voice
+MODEL_ID = "eleven_monolingual_v1"
 
-load_dotenv()
-
-ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
-elevenlabs = ElevenLabs(api_key=ELEVENLABS_API_KEY)
-
-pygame.mixer.init()
+client = ElevenLabs(api_key=API_KEY)
 
 
 def say(text: str):
     """
-    Converts text to speech, plays it, then deletes the temp file.
-    Blocks until audio finishes playing.
+    Speaks the given text aloud using ElevenLabs TTS.
+    Blocks until the audio has finished playing.
+    
+    Args:
+        text: The instruction or message to speak to the user.
     """
-    print(f"[SPEAKER] {text}")
+    print(f"[SPEAKER] {text}")  # helpful for debugging during development
 
-    # Generate audio and save to temp mp3
-    response = elevenlabs.text_to_speech.convert(
-        voice_id="pNInz6obpgDQGcFmaJgB",  # Adam pre-made voice
-        output_format="mp3_22050_32",
+    audio = client.generate(
         text=text,
-        model_id="eleven_turbo_v2_5",  # turbo for low latency
-        voice_settings=VoiceSettings(
-            stability=0.0,
-            similarity_boost=1.0,
-            style=0.0,
-            use_speaker_boost=True,
-            speed=1.0,
-        ),
+        voice=VOICE_ID,
+        model=MODEL_ID
     )
-
-    save_file_path = f"{uuid.uuid4()}.mp3"
-    with open(save_file_path, "wb") as f:
-        for chunk in response:
-            if chunk:
-                f.write(chunk)
-
-    # Play the file and block until done
-    pygame.mixer.music.load(save_file_path)
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)
-
-    # Clean up temp file
-    pygame.mixer.music.unload()
-    os.remove(save_file_path)
+    play(audio)
 
 
 # --- Quick test ---
