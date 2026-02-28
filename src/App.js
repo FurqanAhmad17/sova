@@ -135,6 +135,7 @@ function App() {
       <header className="header">
         <nav className="nav">
           <a href="/" className="logo-link">
+            <img src="/assets/logo.png" alt="Sova logo" className="logo" />
             <span>Sova</span>
           </a>
           <ul className="nav-links">

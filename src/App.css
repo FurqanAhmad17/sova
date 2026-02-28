@@ -540,6 +540,10 @@
 .logo {
   height: 36px;
   width: 36px;
+  background-color: transparent;
+  border: none;
+  object-fit: contain;
+  mix-blend-mode: screen;
   transition: filter 0.3s ease, transform 0.5s ease;
   animation: logoGlow 4s ease-in-out infinite;
 }
