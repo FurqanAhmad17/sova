@@ -1,20 +1,29 @@
-from dotenv import load_dotenv
-from elevenlabs.client import ElevenLabs
-from elevenlabs.play import play
 import os
+from elevenlabs.client import ElevenLabs
+from elevenlabs import play
 
-load_dotenv()
+# --- Configuration ---
+API_KEY = os.environ.get("ELEVENLABS_API_KEY", "YOUR_API_KEY_HERE")
+VOICE_ID = "EXAVITQu4vr4xnSDxMaL"  # "Sarah" - clear, calm, neutral voice
+MODEL_ID = "eleven_monolingual_v1"
 
-elevenlabs = ElevenLabs(
-  api_key=os.getenv("ELEVENLABS_API_KEY"),
-)
+client = ElevenLabs(api_key=API_KEY)
 
-def say(t: str) -> None:
-    audio = elevenlabs.text_to_speech.convert(
-        text=t,
-        voice_id="EXAVITQu4vr4xnSDxMaL",
-        model_id="eleven_monolingual_v1",
-        output_format="mp3_44100_128",
+
+def say(text: str):
+    """
+    Speaks the given text aloud using ElevenLabs TTS.
+    Blocks until the audio has finished playing.
+    
+    Args:
+        text: The instruction or message to speak to the user.
+    """
+    print(f"[SPEAKER] {text}")  # helpful for debugging during development
+
+    audio = client.generate(
+        text=text,
+        voice=VOICE_ID,
+        model=MODEL_ID
     )
     play(audio)
 
