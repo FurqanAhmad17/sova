@@ -89,7 +89,7 @@
       "from": "NODE_STAIRCASE",
       "to": "NODE_WASHROOM",
       "instruction": "Turn right and walk straight for 29 paces. The washroom will be on your right.",
-      "paces": 29
+      "paces": 28
     },
     {
       "from": "NODE_WASHROOM",
