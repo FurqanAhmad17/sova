@@ -1,0 +1,124 @@
+{
+  "nodes": {
+    "NODE_FRONT_DOOR": {
+      "label": "Front Door",
+      "x": 0,
+      "y": 0
+    },
+    "NODE_JUNCTION": {
+      "label": "Main Hallway Junction",
+      "x": 0,
+      "y": 10
+    },
+    "NODE_LECTURE_HALL_1210": {
+      "label": "Lecture Hall 1210",
+      "x": 0,
+      "y": 20
+    },
+    "NODE_CAFETERIA": {
+      "label": "Cafeteria",
+      "x": -15,
+      "y": 10
+    },
+    "NODE_STAIRCASE": {
+      "label": "Staircase",
+      "x": -1,
+      "y": 20
+    },
+    "NODE_WASHROOM": {
+      "label": "Washroom",
+      "x": -30,
+      "y": 20
+    }
+  },
+
+  "edges": [
+    {
+      "from": "NODE_FRONT_DOOR",
+      "to": "NODE_JUNCTION",
+      "instruction": "Walk straight ahead for 10 paces.",
+      "paces": 10
+    },
+    {
+      "from": "NODE_JUNCTION",
+      "to": "NODE_FRONT_DOOR",
+      "instruction": "Turn around and walk straight for 10 paces. You will reach the front door.",
+      "paces": 10
+    },
+
+    {
+      "from": "NODE_JUNCTION",
+      "to": "NODE_LECTURE_HALL_1210",
+      "instruction": "Continue straight ahead for 10 more paces.",
+      "paces": 10
+    },
+    {
+      "from": "NODE_LECTURE_HALL_1210",
+      "to": "NODE_JUNCTION",
+      "instruction": "Turn around and walk straight for 10 paces.",
+      "paces": 10
+    },
+
+    {
+      "from": "NODE_JUNCTION",
+      "to": "NODE_CAFETERIA",
+      "instruction": "Turn left and walk straight for 15 paces. The cafeteria will be ahead of you.",
+      "paces": 15
+    },
+    {
+      "from": "NODE_CAFETERIA",
+      "to": "NODE_JUNCTION",
+      "instruction": "Turn around and walk straight for 15 paces, then turn right.",
+      "paces": 15
+    },
+
+    {
+      "from": "NODE_LECTURE_HALL_1210",
+      "to": "NODE_STAIRCASE",
+      "instruction": "Turn left and walk 1 pace forward.",
+      "paces": 1
+    },
+    {
+      "from": "NODE_STAIRCASE",
+      "to": "NODE_LECTURE_HALL_1210",
+      "instruction": "Turn around, walk 1 pace, then turn right. Lecture Hall 1210 will be on your right.",
+      "paces": 1
+    },
+
+    {
+      "from": "NODE_STAIRCASE",
+      "to": "NODE_WASHROOM",
+      "instruction": "Turn right and walk straight for 29 paces. The washroom will be on your right.",
+      "paces": 29
+    },
+    {
+      "from": "NODE_WASHROOM",
+      "to": "NODE_STAIRCASE",
+      "instruction": "Turn around and walk straight for 29 paces. You will reach the staircase landing.",
+      "paces": 29
+    }
+  ],
+
+  "destinations": {
+    "washroom": "NODE_WASHROOM",
+    "cafeteria": "NODE_CAFETERIA",
+    "lecture hall 1210": "NODE_LECTURE_HALL_1210",
+    "staircase": "NODE_STAIRCASE"
+  },
+
+  "arrival_messages": {
+    "NODE_WASHROOM": "You have arrived at the washroom. It is on your right.",
+    "NODE_CAFETERIA": "You have arrived at the cafeteria.",
+    "NODE_LECTURE_HALL_1210": "You have arrived at Lecture Hall 1210.",
+    "NODE_STAIRCASE": "You have arrived at the staircase."
+  },
+
+  "qr_codes": {
+    "ACCESSIBLE_NAV::NODE_FRONT_DOOR": "NODE_FRONT_DOOR",
+    "ACCESSIBLE_NAV::NODE_JUNCTION": "NODE_JUNCTION",
+    "ACCESSIBLE_NAV::NODE_LECTURE_HALL_1210": "NODE_LECTURE_HALL_1210",
+    "ACCESSIBLE_NAV::NODE_CAFETERIA": "NODE_CAFETERIA",
+    "ACCESSIBLE_NAV::NODE_STAIRCASE": "NODE_STAIRCASE",
+    "ACCESSIBLE_NAV::NODE_WASHROOM": "NODE_WASHROOM"
+  }
+}
