@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import '@google/model-viewer';
 import './App.css';
 
 function App() {
@@ -156,7 +157,20 @@ function App() {
           <div className="hero-glow hero-glow-2" aria-hidden="true" />
           <div className="section-badge animate-on-scroll fade-in">Mission</div>
           <h1 className="animate-on-scroll slide-up">The Problem</h1>
-          <p className="hero-tagline animate-on-scroll slide-up delay-1">Visual-Audio navigation for the visually impaired</p>
+          <p className="hero-tagline animate-on-scroll slide-up delay-1">Visual-Audio Navigation for the Visually Impaired</p>
+          <h1 className="animate-on-scroll slide-up delay-1">The Solution</h1>
+          <div className="model-viewer-shell animate-on-scroll slide-up delay-2">
+            <model-viewer
+              src="/assets/3DModel.glb"
+              alt="Sova 3D model"
+              className="hero-model-viewer"
+              camera-controls
+              auto-rotate
+              shadow-intensity="1"
+              exposure="1"
+              interaction-prompt="none"
+            />
+          </div>
           <div className="mission-box mission-box-border animate-on-scroll slide-up delay-2">
             <div className="mission-box-glow" aria-hidden="true" />
             <h2>Our Mission</h2>
