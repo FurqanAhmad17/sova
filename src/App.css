@@ -613,6 +613,69 @@
   width: 120%;
 }
 
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  border-radius: 10px;
+  padding: 0.4rem;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--silver-light);
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0.85rem 1rem;
+  }
+
+  .nav {
+    position: relative;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .logo-link {
+    font-size: 1.2rem;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.9rem 0;
+    margin-top: 0.35rem;
+    border-top: 1px solid rgba(96, 165, 250, 0.18);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    display: inline-block;
+    width: max-content;
+    padding-bottom: 2px;
+  }
+}
+
 /* ========== Hero & Mission ========== */
 .main {
   position: relative;

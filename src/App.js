@@ -6,6 +6,7 @@ function App() {
   const [activeSection, setActiveSection] = useState('mission');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const missionRef = useRef(null);
   const statsRef = useRef(null);
   const solutionRef = useRef(null);
@@ -52,6 +53,7 @@ function App() {
   const handleNavClick = (e, target) => {
     e.preventDefault();
     setActiveSection(target);
+    setMobileMenuOpen(false);
     document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -139,7 +141,19 @@ function App() {
             <img src="/assets/logo.png" alt="Sova logo" className="logo" />
             <span>Sova</span>
           </a>
-          <ul className="nav-links">
+          <button
+            className="nav-toggle"
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+          <ul id="primary-navigation" className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
             <li><a href="#mission" className={activeSection === 'mission' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'mission')}>Mission</a></li>
             <li><a href="#stats" className={activeSection === 'stats' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'stats')}>Statistics</a></li>
             <li><a href="#solution" className={activeSection === 'solution' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'solution')}>Objectives</a></li>
