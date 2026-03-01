@@ -1,4 +1,4 @@
-# sova
+# Sova
 Visual-Audio navigation for the visually impaired.
 
 Check out our website: **https://sova-ai-app.web.app/**
@@ -16,3 +16,5 @@ No more stopping to read braille, no more relying on a tour guide, and no more r
 visually impaired can navigate buildings like anyone else.
 
 *The future of navigation for the visually impaired is here. Do you want to be a part of it?*
+
+![Prototype](assets/glasses.png)
