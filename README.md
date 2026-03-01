@@ -17,5 +17,7 @@ visually impaired can navigate buildings like anyone else.
 
 *The future of navigation for the visually impaired is here. Do you want to be a part of it?*
 
+# Gallery
 <img title="Current Prototype" src="assets/glasses.png" width=400 style="vertical-align:middle">
+
 *Current prototype*
