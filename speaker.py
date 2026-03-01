@@ -21,7 +21,7 @@ def say(t: str) -> None:
     try:
         audio = elevenlabs.text_to_speech.convert(
             text=t,
-            voice_id="JBFqnCBsd6RMkjVDRZzb",
+            voice_id="VlQRLHkc5IdFj7o0atT1",
             model_id="eleven_multilingual_v2",
             output_format="mp3_44100_128",
         )
