@@ -1,5 +1,6 @@
 import speech_recognition as sr
 import sounddevice as sd
+import time
 
 # pip install SpeechRecognition pyaudio
 
@@ -12,10 +13,10 @@ VALID_DESTINATIONS = [
 ]
 
 
-def listen_for_destination() -> str:
+def listen_for_destination(max_wait_seconds: int = 10) -> str | None:
     """
     Listens via microphone and returns a matched destination string.
-    Keeps retrying until a valid destination is heard.
+    Retries until a valid destination is heard or the overall timeout is reached.
     """
     recognizer = sr.Recognizer()
     mic = sr.Microphone()
@@ -25,12 +26,16 @@ def listen_for_destination() -> str:
     with mic as source:
         recognizer.adjust_for_ambient_noise(source, duration=1)
 
-    while True:
+    deadline = time.monotonic() + max_wait_seconds
+
+    while time.monotonic() < deadline:
         print("[VOICE INPUT] Say your destination: washroom, cafeteria, lecture hall 1210, or staircase")
 
         with mic as source:
             try:
-                audio = recognizer.listen(source, timeout=8, phrase_time_limit=5)
+                remaining = max(0.1, deadline - time.monotonic())
+                listen_timeout = min(3, remaining)
+                audio = recognizer.listen(source, timeout=listen_timeout, phrase_time_limit=5)
                 text = recognizer.recognize_google(audio).lower()
                 print(f"[VOICE INPUT] Heard: '{text}'")
 
@@ -47,6 +52,9 @@ def listen_for_destination() -> str:
                 print("[VOICE INPUT] Could not understand audio, trying again...")
             except sr.RequestError as e:
                 print(f"[VOICE INPUT] Google Speech API error: {e}")
+
+    print(f"[VOICE INPUT] Timeout: no valid destination heard in {max_wait_seconds} seconds.")
+    return None
 
 
 def match_destination(text: str) -> str | None:

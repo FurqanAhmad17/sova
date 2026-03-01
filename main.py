@@ -12,14 +12,19 @@ def run():
 
     # --- Step 1: Listen for destination ---
     speaker.say("Welcome. Please say your destination. You can say: washroom, cafeteria, lecture hall 1210, or staircase.")
-    spoken = voice_input.listen_for_destination()
+    spoken = voice_input.listen_for_destination(max_wait_seconds=10)
+
+    if not spoken:
+        speaker.say("Sorry, I didn't catch a valid destination. Please try again.")
+        return
+
     dest_node = navigation.resolve_destination(floor_plan, spoken)
 
     if not dest_node:
         speaker.say("Sorry, I didn't catch a valid destination. Please restart.")
         return
 
-    speaker.say(f"Navigating to {spoken}. Please walk to the nearest QR code to begin.")
+    speaker.say(f"Navigating to {spoken}.") #Please walk to the nearest QR code to begin.
 
     # --- Step 2: Continuous scanning loop ---
     cap = cv2.VideoCapture(0)

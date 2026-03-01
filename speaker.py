@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 from elevenlabs.client import ElevenLabs
 from elevenlabs.play import play
 import os
+import subprocess
 
 load_dotenv()
 
@@ -10,13 +11,24 @@ elevenlabs = ElevenLabs(
 )
 
 def say(t: str) -> None:
-    audio = elevenlabs.text_to_speech.convert(
-        text=t,
-        voice_id="JBFqnCBsd6RMkjVDRZzb",
-        model_id="eleven_multilingual_v2",
-        output_format="mp3_44100_128",
-    )
-    play(audio)
+    api_key = os.getenv("ELEVENLABS_API_KEY")
+
+    if not api_key:
+        print("[SPEAKER] ELEVENLABS_API_KEY missing. Using macOS fallback voice.")
+        subprocess.run(["say", t], check=False)
+        return
+
+    try:
+        audio = elevenlabs.text_to_speech.convert(
+            text=t,
+            voice_id="JBFqnCBsd6RMkjVDRZzb",
+            model_id="eleven_multilingual_v2",
+            output_format="mp3_44100_128",
+        )
+        play(audio)
+    except Exception as error:
+        print(f"[SPEAKER] ElevenLabs playback failed: {error}. Using macOS fallback voice.")
+        subprocess.run(["say", t], check=False)
 
 
 # --- Quick test ---
