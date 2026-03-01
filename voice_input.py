@@ -1,5 +1,4 @@
 import speech_recognition as sr
-import sounddevice as sd
 import time
 
 # pip install SpeechRecognition pyaudio
