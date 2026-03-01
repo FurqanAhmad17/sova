@@ -205,7 +205,14 @@ function App() {
             <p className="mission-highlight">
               The future of navigation for the visually impaired is here. Do you want to be a part of it?
             </p>
-            <button className="interactive-btn btn-shine">Learn More</button>
+            <a
+              className="interactive-btn btn-shine"
+              href="https://github.com/FurqanAhmad17/sova"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Learn More
+            </a>
           </div>
         </section>
 
@@ -288,7 +295,6 @@ function App() {
               ))}
             </ul>
           </div>
-          <button className="interactive-btn cta-btn btn-shine animate-on-scroll fade-in">See Offers</button>
         </section>
       </main>
 
