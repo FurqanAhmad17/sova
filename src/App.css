@@ -879,6 +879,30 @@
   margin-bottom: 1rem;
 }
 
+.mission-video-title {
+  color: var(--silver-light);
+  font-size: 1.05rem;
+  margin: 0 0 0.7rem;
+  font-weight: 600;
+}
+
+.mission-video-shell {
+  width: 100%;
+  margin: 0 0 1.25rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  background: rgba(10, 14, 20, 0.7);
+}
+
+.mission-video {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  max-height: min(56vw, 420px);
+  background: #000;
+}
+
 .mission-box p {
   color: var(--text-light);
   line-height: 1.7;

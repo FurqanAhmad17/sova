@@ -188,6 +188,18 @@ function App() {
           <div className="mission-box mission-box-border animate-on-scroll slide-up delay-2">
             <div className="mission-box-glow" aria-hidden="true" />
             <h2>Our Mission</h2>
+            <h3 className="mission-video-title">Demo Video</h3>
+            <div className="mission-video-shell">
+              <video
+                className="mission-video"
+                controls
+                preload="metadata"
+                playsInline
+              >
+                <source src="/assets/DeerHacks%20Sova%20Pitch%20FINAL.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <p>
               Many buildings still depend on braille signage to provide directions for the visually impaired. However,
               braille requires significant literacy, time, and physical effort to be read and installed.
