@@ -197,16 +197,17 @@ function App() {
             <h2>Our Mission</h2>
             <h3 className="mission-video-title">Demo Video</h3>
             <div className="mission-video-shell">
-              <video
+              <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/xpWvJKi2_Xc?si=CcR69KIkKmitRWPx" 
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
                 className="mission-video"
-                controls
-                preload="metadata"
-                playsInline
-                aria-label="Sova demo video"
-              >
-                <source src="/assets/DeerHacks%20Sova%20Pitch%20FINAL.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              />
             </div>
             <p>
               Our solution is simple. Users wear glasses fitted with a camera that automatically scans QR codes carefully placed throughout
