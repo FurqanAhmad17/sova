@@ -22,8 +22,3 @@ visually impaired can navigate buildings like anyone else.
 [![Sova Demo Video](https://img.youtube.com/vi/xpWvJKi2_Xc/maxresdefault.jpg)](https://youtu.be/xpWvJKi2_Xc)
 
 *Click the image above to watch our demo video*
-
-# Gallery
-<img title="Current Prototype" src="assets/glasses.png" width=400 style="vertical-align:middle">
-
-*Current prototype*
