@@ -63,11 +63,13 @@ function App() {
 
   return (
     <div className="App">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+
       {/* Scroll progress bar */}
-      <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
+      <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} aria-hidden="true" />
 
       {/* Floating decorative orbs */}
-      <div className="floating-orbs">
+      <div className="floating-orbs" aria-hidden="true">
         <div className="orb orb-1" />
         <div className="orb orb-2" />
         <div className="orb orb-3" />
@@ -95,7 +97,8 @@ function App() {
             key={id}
             className={`section-indicator ${activeSection === id ? 'active' : ''}`}
             onClick={(e) => handleNavClick(e, id)}
-            aria-label={`Go to ${id}`}
+            aria-label={`Go to ${id.charAt(0).toUpperCase() + id.slice(1)} section`}
+            aria-current={activeSection === id ? 'true' : undefined}
           />
         ))}
       </nav>
@@ -136,7 +139,7 @@ function App() {
       </div>
 
       <header className="header">
-        <nav className="nav">
+        <nav className="nav" aria-label="Primary navigation">
           <a href="/" className="logo-link">
             <img src="/assets/logo.png" alt="Sova logo" className="logo" />
             <span>Sova</span>
@@ -161,23 +164,27 @@ function App() {
         </nav>
       </header>
 
-      <main className="main">
+      <main id="main-content" className="main" tabIndex="-1">
         {/* Section connector line */}
         <div className="section-connector" aria-hidden="true" />
 
         {/* Intro & Mission */}
-        <section id="mission" ref={missionRef} className="hero">
+        <section id="mission" ref={missionRef} className="hero" aria-labelledby="problem-heading">
           <div className="hero-glow hero-glow-1" aria-hidden="true" />
           <div className="hero-glow hero-glow-2" aria-hidden="true" />
           <div className="section-badge animate-on-scroll fade-in">Mission</div>
-          <h1 className="animate-on-scroll slide-up">The Problem</h1>
-          <p className="hero-tagline animate-on-scroll slide-up delay-1">Visual-Audio Navigation for the Visually Impaired</p>
-          <h1 className="animate-on-scroll slide-up delay-1">The Solution</h1>
+          <h1 id="problem-heading" className="animate-on-scroll slide-up">The Problem</h1>
+          <p className="hero-tagline animate-on-scroll slide-up delay-1">
+            Many buildings still depend on braille signage to provide directions for the visually impaired. However,
+            braille requires significant literacy, time, and physical effort to be read and installed.
+          </p>
+          <h2 className="animate-on-scroll slide-up delay-1">The Solution</h2>
           <div className="model-viewer-shell animate-on-scroll slide-up delay-2">
             <model-viewer
               src="/assets/3DModel.glb"
               alt="Sova 3D model"
               className="hero-model-viewer"
+              aria-hidden="true"
               camera-controls
               auto-rotate
               shadow-intensity="1"
@@ -195,20 +202,16 @@ function App() {
                 controls
                 preload="metadata"
                 playsInline
+                aria-label="Sova demo video"
               >
                 <source src="/assets/DeerHacks%20Sova%20Pitch%20FINAL.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
             <p>
-              Many buildings still depend on braille signage to provide directions for the visually impaired. However,
-              braille requires significant literacy, time, and physical effort to be read and installed.
-              With the state of modern technology, Sova strives for a more practical solution.
-            </p>
-            <p>
-              Our solution is simple. Users wear glasses fitted with a camera that automatically scans QR code carefully placed throughout
-              a building. When the camera detects a code, the system leverages the artifical intelligence of ElevenLabs to play a short
-              audio queue, which informs of the user of their current location and prompts them on where they want to go next.
+              Our solution is simple. Users wear glasses fitted with a camera that automatically scans QR codes carefully placed throughout
+              a building. When the camera detects a code, the system leverages the artificial intelligence of ElevenLabs to play a short
+              audio cue, which informs the user of their current location and prompts them on where they want to go next.
             </p>
             <p>
               No more stopping to read braille, no more relying on a tour guide, and no more risk of preventable injury.
@@ -248,16 +251,16 @@ function App() {
         </div>
 
         {/* Statistics */}
-        <section id="stats" ref={statsRef} className="stats-section">
+        <section id="stats" ref={statsRef} className="stats-section" aria-labelledby="stats-heading">
           <div className="section-badge animate-on-scroll fade-in">Statistics</div>
-          <h2 className="animate-on-scroll slide-left">The Numbers</h2>
+          <h2 id="stats-heading" className="animate-on-scroll slide-left">The Numbers</h2>
           <p className="stats-intro animate-on-scroll slide-right">
             Here are the numbers, exposing the brutal reality of the struggles faced by the visually impaired.
           </p>
           <div className="stats-grid">
             {[
-              { num: '2.2B+', label: 'People worldwide have a near or distance visual impairment'},
-              { num: '90%', label: 'Of legally blind Americans are incapable of reading braille ' },
+              { num: '2.2B+', label: 'People worldwide have a near or distance vision impairment' },
+              { num: '90%', label: 'Of legally blind Americans are unable to read braille' },
               { num: '~68%', label: 'Of people with visual impairment have been exposed to at least one serious life event' },
               { num: '$2000+', label: 'The average cost to purchase braille displays and associated technology' },
             ].map((stat, i) => (
@@ -270,7 +273,7 @@ function App() {
           </div>
           <p className="stats-conclusion animate-on-scroll fade-in">
             Braille has become the standard tool that the visually impaired rely on.
-            It is due time to create a solution that is acccesible for all.
+            It is due time to create a solution that is accessible for all.
           </p>
         </section>
 
@@ -289,14 +292,14 @@ function App() {
         </div>
 
         {/* Our Solution */}
-        <section id="solution" ref={solutionRef} className="solution-section">
+        <section id="solution" ref={solutionRef} className="solution-section" aria-labelledby="solution-heading">
           <div className="section-badge animate-on-scroll fade-in">Objectives</div>
-          <h2 className="animate-on-scroll slide-left">The Future at Sova</h2>
+          <h2 id="solution-heading" className="animate-on-scroll slide-left">The Future at Sova</h2>
           <div className="solution-content">
             <ul className="solution-list">
               {[
                 { title: 'Reduced Costs', text: 'Buildings simply need to paste QR codes around the premises, which is significantly cheaper than the costs for braille signage' },
-                { title: 'Universal Utility', text: 'Anyone with access to the technology can easily naviagate a building, removing the need for the declining braille literacy' },
+                { title: 'Universal Utility', text: 'Anyone with access to the technology can easily navigate a building, removing the need for declining braille literacy' },
                 { title: 'Self-Dependence', text: 'Our technology removes the need for assistants or tour guides, giving users the feeling of independence and freedom in their movement' },
                 { title: 'General Safety', text: 'The visual-audio capabilities of our technology lowers the chance of preventable accidents from navigating with braille.' },
               ].map((item, i) => (
@@ -312,8 +315,8 @@ function App() {
 
       <footer className="footer">
         <div className="footer-glow" aria-hidden="true" />
-        <p>Sova — Visual-Audio navigation for the visually impaired </p>
-        <p className="footer-credit">&copy; 2026 - DeerHacks - University Of Toronto Mississauga </p>
+        <p>Sova — Visual-audio navigation for the visually impaired</p>
+        <p className="footer-credit">&copy; 2026 - DeerHacks - University of Toronto Mississauga</p>
       </footer>
     </div>
   );

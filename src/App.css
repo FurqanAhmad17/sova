@@ -15,6 +15,24 @@
   --text-muted: #9ca8b8;
 }
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 16px;
+  z-index: 1200;
+  background: var(--bg-card);
+  color: var(--text-light);
+  border: 1px solid var(--blue-light);
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
 /* ========== Base Animations ========== */
 @keyframes slideUp {
   from {
@@ -574,6 +592,15 @@
   transition: color 0.3s ease;
 }
 
+.nav-links a:focus-visible,
+.nav-toggle:focus-visible,
+.section-indicator:focus-visible,
+.back-to-top:focus-visible,
+.interactive-btn:focus-visible {
+  outline: 2px solid var(--blue-light);
+  outline-offset: 3px;
+}
+
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -772,7 +799,8 @@
   50% { background-position: 100% 50%; }
 }
 
-.hero h1 {
+.hero h1,
+.hero h2 {
   font-size: 3rem;
   margin: 0 0 0.5rem 0;
   font-weight: 800;
@@ -785,7 +813,8 @@
   transition: letter-spacing 0.6s ease, background-position 0.6s ease;
 }
 
-.hero h1.visible {
+.hero h1.visible,
+.hero h2.visible {
   letter-spacing: 0.02em;
   background-position: 100% center;
 }
@@ -793,7 +822,10 @@
 .hero-tagline {
   font-size: 1.25rem;
   opacity: 0.95;
-  margin-bottom: 2.5rem;
+  max-width: 760px;
+  margin: 0 auto 2.5rem;
+  padding: 0 1rem;
+  line-height: 1.7;
   color: var(--text-muted);
 }
 
