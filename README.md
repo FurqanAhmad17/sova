@@ -17,6 +17,12 @@ visually impaired can navigate buildings like anyone else.
 
 *The future of navigation for the visually impaired is here. Do you want to be a part of it?*
 
+# Demo Video
+
+[![Sova Demo Video](https://img.youtube.com/vi/xpWvJKi2_Xc/maxresdefault.jpg)](https://youtu.be/xpWvJKi2_Xc)
+
+*Click the image above to watch our demo video*
+
 # Gallery
 <img title="Current Prototype" src="assets/glasses.png" width=400 style="vertical-align:middle">
 
