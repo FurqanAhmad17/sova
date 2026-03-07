@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 import navigation
 import speaker
 import voice_input
@@ -9,7 +10,7 @@ FLOOR_PLAN_PATH = "floor_plan.json"
 def run():
     floor_plan = navigation.load_floor_plan()
 
-    # --- Step 1: Listen for destination ---
+    #  Listen for destination 
     speaker.say("Welcome. Please say your destination. You can say: washroom, cafeteria, lecture hall 1210, or staircase.")
     spoken = voice_input.listen_for_destination(max_wait_seconds=10)
 
@@ -25,8 +26,12 @@ def run():
 
     speaker.say(f"Navigating to {spoken}.") #Please walk to the nearest QR code to begin.
 
-    # --- Step 2: Continuous scanning loop ---
+    # Continuous scanning loop 
     cap = cv2.VideoCapture(0)
+    if not cap.isOpened():
+        print("[MAIN] Camera failed to open.")
+        return
+
     detector = cv2.QRCodeDetector()
     last_node = None
 
@@ -34,11 +39,25 @@ def run():
 
     while True:
         ret, frame = cap.read()
-        if not ret:
+        if not ret or frame is None:
             print("[MAIN] Camera read failed.")
             break
 
-        data, _, _ = detector.detectAndDecode(frame)
+        if frame.size == 0:
+            print("[MAIN] Empty camera frame, skipping.")
+            continue
+
+        if frame.dtype != np.uint8:
+            frame = cv2.convertScaleAbs(frame)
+
+        if len(frame.shape) == 2:
+            frame = cv2.cvtColor(frame, cv2.COLOR_GRAY2BGR)
+
+        try:
+            data, _, _ = detector.detectAndDecode(frame)
+        except cv2.error as error:
+            print(f"[MAIN] QR decode failed on this frame: {error}")
+            continue
 
         if data and data.startswith("ACCESSIBLE_NAV::"):
             current_node = navigation.resolve_qr(floor_plan, data)
